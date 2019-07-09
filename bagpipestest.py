@@ -12,14 +12,15 @@ filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
 model_components = {}
 model_components["redshift"] = random.uniform(0.3, 0.9)
 model_components["t_bc"] = 0.01
+model_components["veldisp"] = 0.
 
 #creates history component (tophat formation from 10.7gyr-6.4gyr)
-tophat = {}
-tophat["age_max"] = 10.7
-tophat["age_min"] = 6.4
-tophat["massformed"] = 8.7
-tophat["metallicity"] = 0.1
-model_components["sfh_comp"] = tophat
+constant = {}
+constant["age_max"] = 10.7
+constant["age_min"] = 6.4
+constant["massformed"] = 8.7
+constant["metallicity"] = 0.3
+model_components["constant"] = constant
 
 dust = {}
 dust["type"] = "Cardelli"
@@ -27,3 +28,5 @@ dust["Av"] = 0.3
 model_components["dust"] = dust
 
 model = pipes.model_galaxy(model_components, filt_list=filt_list)
+fig = model.plot()
+fig = model.sfh.plot()
