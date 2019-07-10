@@ -1,4 +1,4 @@
-import  numpy as np
+import numpy as np
 import bagpipes as pipes
 from astropy.io import fits
 
