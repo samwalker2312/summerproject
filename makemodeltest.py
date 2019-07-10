@@ -74,6 +74,9 @@ dust["type"] = "Cardelli"
 dust["Av"] = 0.3
 model_components["dust"] = dust
 
+print(model_components)
+
 model = pipes.model_galaxy(model_components, filt_list=filt_list)
-fig = model.plot()
+print(model.photometry)
 fig = model.sfh.plot()
+fig = model.plot()

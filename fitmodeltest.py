@@ -27,6 +27,6 @@ fit.fit(verbose=False)
 
 print(np.median(fit.posterior.samples["exponential:tau"]))
 print(np.median(fit.posterior.samples["exponential:age"]))
-#fig = fit.plot_spectrum_posterior(save=False, show=True) #####doesnt work, unclear why
+fig = fit.plot_spectrum_posterior(save=False, show=True) #####doesnt work, unclear why
 fig = fit.plot_sfh_posterior(save=False, show=True)
 fig = fit.plot_corner(save=False, show=True)
