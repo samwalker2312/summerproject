@@ -10,7 +10,7 @@ filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
 
 #set up dictionary for use
 model_components = {}
-model_components["redshift"] = random.uniform(0.3, 0.9)
+model_components["redshift"] = random.uniform(0.3, 10.)
 model_components["t_bc"] = 0.01
 model_components["veldisp"] = 0.
 
@@ -74,6 +74,9 @@ dust["type"] = "Cardelli"
 dust["Av"] = 0.3
 model_components["dust"] = dust
 
+print(model_components)
+
 model = pipes.model_galaxy(model_components, filt_list=filt_list)
-fig = model.plot()
+print(model.photometry)
 fig = model.sfh.plot()
+fig = model.plot()

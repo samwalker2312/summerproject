@@ -5,8 +5,6 @@ import numpy as np
 
 filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
 
-galaxy = pipes.galaxy(14697,load_goodss,spectrum_exists=False,filt_list=filt_list)
-
 exp = {}
 exp["age"] = (0.1,15.)
 exp["tau"] = (0.3, 12.)
@@ -22,11 +20,7 @@ fit_instructions["redshift"] = (0., 10.)
 fit_instructions["exponential"] = exp
 fit_instructions["dust"] = dust
 
-fit = pipes.fit(galaxy, fit_instructions)
-fit.fit(verbose=False)
-
-print(np.median(fit.posterior.samples["exponential:tau"]))
-print(np.median(fit.posterior.samples["exponential:age"]))
-fig = fit.plot_spectrum_posterior(save=False, show=True) #####doesnt work, unclear why
-fig = fit.plot_sfh_posterior(save=False, show=True)
-fig = fit.plot_corner(save=False, show=True)
+IDs = np.arange(1,6)
+fit_cat = pipes.fit_catalogue(IDs, fit_instructions, load_goodss,\
+ spectrum_exists=False, cat_filt_list=filt_list, run="guo")
+fit_cat.fit(verbose=False)
