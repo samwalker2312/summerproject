@@ -10,35 +10,34 @@ filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
 
 #set up dictionary for use
 model_components = {}
-model_components["redshift"] = random.uniform(0.3, 10.)
-model_components["t_bc"] = 0.01
-model_components["veldisp"] = 0.
+model_components["redshift"] = .4
+#model_components["t_bc"] = 0.01
+#model_components["veldisp"] = 0.
 
 i = 0
 while i == 0:
     modeltype = str(input("Input the type of model you wish to run: "))
     if modeltype == "constant":
-        #creates history component (tophat formation from 10.7gyr-6.4gyr)
         constant = {}
-        constant["age_max"] = 10.7
-        constant["age_min"] = 6.4
-        constant["massformed"] = 8.7
-        constant["metallicity"] = 0.3
+        constant["age_max"] = 6.
+        constant["age_min"] = 4.
+        constant["massformed"] = 1.
+        constant["metallicity"] = 0.0001
         model_components["constant"] = constant
         i +=1
     elif modeltype == "burst":
         burst = {}
-        burst["age"] = 8.3
-        burst["massformed"] = 8.7
-        burst["metallicity"] = 0.3
+        burst["age"] = 6.
+        burst["massformed"] = 1.
+        burst["metallicity"] = 0.0001
         model_components["burst"] = burst
         i +=1
     elif modeltype == "exp":
         exp = {}
-        exp["age"] = 3.
-        exp["tau"] = 0.75
-        exp["massformed"] = 9.
-        exp["metallicity"] = 0.5
+        exp["age"] = 6.
+        exp["tau"] = 4.
+        exp["massformed"] = 1.
+        exp["metallicity"] = 0.0001
         model_components["exponential"] = exp
         i +=1
     elif modeltype == "delay":
@@ -72,7 +71,7 @@ while i == 0:
 dust = {}
 dust["type"] = "Cardelli"
 dust["Av"] = 0.3
-model_components["dust"] = dust
+#model_components["dust"] = dust
 
 print(model_components)
 
