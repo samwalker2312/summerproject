@@ -3,7 +3,7 @@ from loaddata import load_vandels_spec
 import bagpipes as pipes
 import numpy as np
 
-def fitmodel(ID):
+def fitmodel(ID, saveplot=False):
     filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
 
     galaxy = pipes.galaxy(ID,load_goodss,spectrum_exists=False,filt_list=filt_list)
@@ -26,11 +26,14 @@ def fitmodel(ID):
     fit = pipes.fit(galaxy, fit_instructions)
     fit.fit(verbose=False)
 
-    print(np.median(fit.posterior.samples["exponential:tau"]))
-    print(np.median(fit.posterior.samples["exponential:age"]))
-    fig = fit.plot_spectrum_posterior(save=False, show=True) #####doesnt work, unclear why
-    fig = fit.plot_sfh_posterior(save=False, show=True)
-    fig = fit.plot_corner(save=False, show=True)
+    if saveplot==True:
+        fig = fit.plot_spectrum_posterior(save=True, show=False) #####doesnt work, unclear why
+        fig = fit.plot_sfh_posterior(save=True, show=False)
+        fig = fit.plot_corner(save=True, show=False)
+    else:
+        fig = fit.plot_spectrum_posterior(save=False, show=True) #####doesnt work, unclear why
+        fig = fit.plot_sfh_posterior(save=False, show=True)
+        fig = fit.plot_corner(save=False, show=True)
 
 def fitcatmodel(ID, run):
     filt_list = np.loadtxt("filters/goodss_filt_list.txt", dtype="str")
