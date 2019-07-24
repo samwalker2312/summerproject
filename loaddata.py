@@ -2,7 +2,6 @@ import numpy as np
 import bagpipes as pipes
 from astropy.io import fits
 
-
 ##################################################
 #for photometric data
 
@@ -16,8 +15,7 @@ def load_goodss(ID):
                               11, 14, 17, 20, 26, 29, 32, 35, 38, 44, 47, 50, 53, 56))
 
     # Find the correct row for the object we want.
-    row = int(ID) - 1
-
+    row = int(float(ID)) - 1
     # Extract the object we want from the catalogue.
     fluxes = cat[row, :14]
     fluxerrs = cat[row, 14:]
