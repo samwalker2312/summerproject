@@ -11,14 +11,14 @@ def load_goodss(ID):
 
     # load up the relevant columns from the catalogue.
     cat = np.loadtxt("hlsp_candels_hst_wfc3_goodss-tot-multiband_f160w_v1-1photom_cat.txt",
-                     usecols=(10, 13, 16, 19, 25, 28, 31, 34, 37, 43, 46, 49, 52, 55,
-                              11, 14, 17, 20, 26, 29, 32, 35, 38, 44, 47, 50, 53, 56))
+                     usecols=(10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49, 52, 55,
+                              11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56))
 
     # Find the correct row for the object we want.
     row = int(ID) - 1
     # Extract the object we want from the catalogue.
-    fluxes = cat[row, :14]
-    fluxerrs = cat[row, 14:]
+    fluxes = cat[row, :16]
+    fluxerrs = cat[row, 16:]
 
     # Turn these into a 2D array.
     photometry = np.c_[fluxes, fluxerrs]
